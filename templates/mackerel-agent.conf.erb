@@ -50,7 +50,11 @@ command = "<%= command %>"
 [plugin.checks.<%= plugin %>]
 <% if parameters.is_a?(Hash) -%>
 <% parameters.each do |param, data| -%>
+<% if data =~ /^[0-9]+$/ -%>
+<%= param %> = <%= data %>
+<% else -%>
 <%= param %> = "<%= data %>"
+<% end -%>
 <% end -%>
 <% else -%>
 command = "<%= parameters %>"
